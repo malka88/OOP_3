@@ -23,12 +23,12 @@ namespace OOP_3
 
         public string getTitle()
         {
-
+            return title;
         }
 
         public DateTime getCreationDate()
         {
-
+            return crationDate;
         }
 
         public abstract double getDistance(PointLatLng point);

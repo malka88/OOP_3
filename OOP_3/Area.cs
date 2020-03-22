@@ -7,6 +7,8 @@ using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsPresentation;
 using System.Device.Location;
+using System.Windows.Shapes;
+using System.Windows.Media;
 
 namespace OOP_3
 {
@@ -16,22 +18,38 @@ namespace OOP_3
 
         public Area(string title, List<PointLatLng> points) : base(title)
         {
-
+            foreach (PointLatLng point in points)
+            {
+                this.points.Add(point);
+            }
         }
 
         public override double getDistance(PointLatLng point)
         {
+            GeoCoordinate c1 = new GeoCoordinate(point.Lat, point.Lng);
+            GeoCoordinate c2 = new GeoCoordinate(points[0].Lat, points[0].Lng);
 
+            return c1.GetDistanceTo(c2);
         }
 
         public override PointLatLng getFocus()
         {
-
+            return points[0];
         }
 
         public override GMapMarker getMarker()
         {
+            GMapMarker marker = new GMapRoute(points)
+            {
+                Shape = new Path()
+                {
+                    Stroke = Brushes.DarkBlue, // цвет обводки
+                    Fill = Brushes.DarkBlue, // цвет заливки
+                    StrokeThickness = 4
+                }
+            };
 
+            return marker;
         }
     }
 }

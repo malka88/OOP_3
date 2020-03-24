@@ -29,7 +29,6 @@ namespace OOP_3
             GMaps.Instance.Mode = AccessMode.ServerAndCache;
 
             Map.MapProvider = GMapProviders.GoogleMap;
-
             Map.MinZoom = 2;
             Map.MaxZoom = 17;
             Map.Zoom = 15;
@@ -48,6 +47,26 @@ namespace OOP_3
         private void Map_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             PointLatLng point = Map.FromLocalToLatLng((int)e.GetPosition(Map).X, (int)e.GetPosition(Map).Y);
+        }
+
+        private void markerTitle_GotFocus(object sender, RoutedEventArgs e)
+        {
+            markerTitle.Text = "";
+        }
+
+        private void markerTitle_LostFocus(object sender, RoutedEventArgs e)
+        {
+            markerTitle.Text = "Имя маркера";
+        }
+
+        private void markerTitle1_GotFocus(object sender, RoutedEventArgs e)
+        {
+            markerTitle1.Text = "";
+        }
+
+        private void markerTitle1_LostFocus(object sender, RoutedEventArgs e)
+        {
+            markerTitle1.Text = "Имя маркера";
         }
     }
 }

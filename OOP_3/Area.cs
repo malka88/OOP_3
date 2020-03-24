@@ -43,8 +43,8 @@ namespace OOP_3
             {
                 Shape = new Path()
                 {
-                    Stroke = Brushes.DarkBlue, // цвет обводки
-                    Fill = Brushes.DarkBlue, // цвет заливки
+                    Stroke = Brushes.DarkBlue,
+                    Fill = Brushes.DarkBlue,
                     StrokeThickness = 4
                 }
             };

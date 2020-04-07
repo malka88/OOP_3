@@ -10,35 +10,29 @@
     <Grid>
         <WindowsPresentation:GMapControl Name="Map" Height="400" Width="550" Loaded="MapLoaded" MouseLeftButtonDown="Map_MouseLeftButtonDown" Margin="220, 0, 0, 0"/>
         <Label Panel.ZIndex="1" Background="White" Content="Режим курсора" Margin="17,10,671,383"/>
-        <Border BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="198" Margin="7,23,0,0">
+        <Border BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="207" Margin="7,23,0,0">
             <StackPanel Margin="12">
-                <CheckBox Content="Создание объектов"/>
-                <CheckBox Content="Поиск ближайших объектов"/>
+                <RadioButton x:Name="create" Content="Создание объектов"/>
+                <RadioButton x:Name="search" Content="Поиск ближайших объектов"/>
             </StackPanel>
         </Border>
         <Label Panel.ZIndex="1" Background="White" Content="Добавить" Margin="17,90,704,305"/>
-        <Border BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" HorizontalAlignment="Left" Height="124" VerticalAlignment="Top" Width="198" Margin="7,102,0,0">
+        <Border BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" HorizontalAlignment="Left" Height="124" VerticalAlignment="Top" Width="207" Margin="7,102,0,0">
             <StackPanel Margin="10"  >
-                <ComboBox Margin="2">
-                    <ComboBoxItem IsSelected="True">Местоположениие</ComboBoxItem>
-                    <ComboBoxItem>Автомобиль</ComboBoxItem>
-                    <ComboBoxItem>Человек</ComboBoxItem>
-                    <ComboBoxItem>Маршрут</ComboBoxItem>
-                    <ComboBoxItem>Область</ComboBoxItem>
-                </ComboBox>
-                <TextBox Height="22" Margin="2" x:Name="markerTitle" TextWrapping="Wrap" Text="Имя маркера" Foreground="Gray" GotFocus="markerTitle_GotFocus" LostFocus="markerTitle_LostFocus"/>
-                <Button x:Name="Ok" Margin="2" Content="ОК" Height="22"/>
-                <Button x:Name="Reset" Margin="2" Content="Сброс точек" Height="22"/>
+                <ComboBox x:Name="markerBox" Margin="2"/>
+                <TextBox x:Name="markerTitle" Height="22" Margin="2" TextWrapping="Wrap" Foreground="Gray"/>
+                <Button x:Name="Ok" Margin="2" Content="ОК" Height="22" Click="Ok_Click"/>
+                <Button x:Name="Reset" Margin="2" Content="Сброс точек" Height="22" Click="Reset_Click"/>
             </StackPanel>
         </Border>
         <Label Panel.ZIndex="1" Background="White" Content="Найти" Margin="17,235,724,160"/>
-        <Border BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" HorizontalAlignment="Left" Height="162" VerticalAlignment="Top" Width="198" Margin="7,247,0,0">
+        <Border BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" HorizontalAlignment="Left" Height="162" VerticalAlignment="Top" Width="207" Margin="7,247,0,0">
             <StackPanel Margin="10"  >
-                <TextBox Height="22" Margin="2" x:Name="markerTitle1" TextWrapping="Wrap" Text="Имя маркера" Foreground="Gray" GotFocus="markerTitle1_GotFocus" LostFocus="markerTitle1_LostFocus"/>
-                <Button x:Name="Ok1" Margin="2" Content="ОК" Height="22"/>
+                <TextBox Height="22" Margin="2" x:Name="markerTitle1" TextWrapping="Wrap" Foreground="Gray"/>
+                <Button x:Name="Ok1" Margin="2" Content="ОК" Height="22" Click="Ok1_Click"/>
                 <Label Panel.ZIndex="2" Margin="2" Background="White" Content="Результаты поиска" Height="24"/>
                 <Border Margin="2" BorderBrush="Silver" BorderThickness="1" Height="58">
-                    <Label Margin="2,2,2,-1" Content=""/>
+                    <ListView x:Name="searchResults" Margin="2,2,2,-1"/>
                 </Border>
             </StackPanel>
         </Border>

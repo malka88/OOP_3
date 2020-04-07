@@ -18,7 +18,8 @@ namespace OOP_3
 
         protected MapObject(string title)
         {
-
+            this.title = title;
+            crationDate = DateTime.Now;
         }
 
         public string getTitle()

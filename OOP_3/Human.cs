@@ -43,7 +43,7 @@ namespace OOP_3
                     Width = 32,
                     Height = 32,
                     ToolTip = getTitle(),
-                    Source = new BitmapImage(new Uri("pack://application:,,,/icons/Human.svg"))
+                    Source = new BitmapImage(new Uri("C:\\Users\\malka\\source\\repos\\OOP_3\\OOP_3\\icons\\Human.png"))
                 }
             };
 

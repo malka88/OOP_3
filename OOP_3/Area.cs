@@ -39,13 +39,13 @@ namespace OOP_3
 
         public override GMapMarker getMarker()
         {
-            GMapMarker marker = new GMapRoute(points)
+            GMapMarker marker = new GMapPolygon(points)
             {
-                Shape = new Path()
+                Shape = new Path
                 {
-                    Stroke = Brushes.DarkBlue,
-                    Fill = Brushes.DarkBlue,
-                    StrokeThickness = 4
+                    Stroke = Brushes.Black,
+                    Fill = Brushes.Violet,
+                    Opacity = 0.7
                 }
             };
 

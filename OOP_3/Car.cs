@@ -24,6 +24,7 @@ namespace OOP_3
         GMapMarker carMarker;
 
         public event EventHandler Arrived;
+        public event EventHandler Follow;
 
         public Car(string title, PointLatLng point) : base(title)
         {
@@ -95,11 +96,13 @@ namespace OOP_3
 
                     this.point = point;
 
-                    if(pass != null)
+                    if (pass != null)
                     {
                         pass.setPosition(point);
                         pass.humanMarker.Position = point;
                     }
+                    Follow?.Invoke(this, null);
+
                 });
                 // задержка 500 мс
                 Thread.Sleep(500);

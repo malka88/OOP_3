@@ -23,7 +23,6 @@ C:\Users\malka\source\repos\OOP_3\OOP_3\obj\Debug\MainWindow.baml
 C:\Users\malka\source\repos\OOP_3\OOP_3\obj\Debug\OOP_3.g.resources
 C:\Users\malka\source\repos\OOP_3\OOP_3\obj\Debug\OOP_3.Properties.Resources.resources
 C:\Users\malka\source\repos\OOP_3\OOP_3\obj\Debug\OOP_3.csproj.GenerateResource.cache
-C:\Users\malka\source\repos\OOP_3\OOP_3\obj\Debug\OOP_3.csproj.CoreCompileInputs.cache
 C:\Users\malka\source\repos\OOP_3\OOP_3\obj\Debug\OOP_3.csproj.CopyComplete
 C:\Users\malka\source\repos\OOP_3\OOP_3\obj\Debug\OOP_3.exe
 C:\Users\malka\source\repos\OOP_3\OOP_3\obj\Debug\OOP_3.pdb

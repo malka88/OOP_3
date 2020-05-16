@@ -96,8 +96,8 @@ namespace OOP_3
                 if ((string)markerBox.SelectedItem == "Автомобиль")
                 {
                     car = new Car(markerTitle.Text, Map.Position);
-                    carMarker = car.getMarker();
                     AddMarker(car);
+                    carMarker = car.getMarker();
                     if (human != null)
                     {
                         car.Arrived += human.CarArrived;
@@ -207,6 +207,14 @@ namespace OOP_3
         private void Go_Click(object sender, RoutedEventArgs e)
         {
             Map.Markers.Add(car.moveTo(human.getPosition()));
+            car.Follow += funFollow;
+        }
+
+        private void funFollow(object sender, EventArgs e)
+        {
+            Car car = (Car)sender;
+
+            Map.Position = car.getFocus();
         }
     }
 }

@@ -51,5 +51,10 @@ namespace OOP_3
 
             return marker;
         }
+
+        public List<PointLatLng> getPoints()
+        {
+            return points;
+        }
     }
 }

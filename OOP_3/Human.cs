@@ -9,16 +9,41 @@ using GMap.NET.WindowsPresentation;
 using System.Device.Location;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows;
 
 namespace OOP_3
 {
     class Human : MapObject
     {
-        PointLatLng point;
+        private PointLatLng point;
+        private PointLatLng destination;
+        public GMapMarker humanMarker;
+
+        public event EventHandler passSeated;
 
         public Human(string title, PointLatLng point) : base(title)
         {
             this.point = point;
+        }
+
+        public PointLatLng getDestination()
+        {
+            return destination;
+        }
+
+        public void setPosition(PointLatLng point)
+        {
+            this.point = point;
+        }
+
+        public void moveTo(PointLatLng dest)
+        {
+            destination = dest;
+        }
+
+        public PointLatLng getPosition()
+        {
+            return point;
         }
 
         public override double getDistance(PointLatLng point)
@@ -47,7 +72,16 @@ namespace OOP_3
                 }
             };
 
+            humanMarker = marker;
+
             return marker;
         }
+
+        public void CarArrived(object sender, EventArgs e)
+        {
+            passSeated?.Invoke(this, EventArgs.Empty);
+            MessageBox.Show("tut");
+        }
+
     }
 }

@@ -23,12 +23,6 @@ namespace OOP_3
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
 
-    public class MapPoint
-    {
-        public string Title { get; set; }
-        public double Distance { get; set; }
-    }
-
     public partial class MainWindow : Window
     {
         List<MapObject> objects = new List<MapObject>();
@@ -37,10 +31,13 @@ namespace OOP_3
 
         List<MapObject> nearestObjects = new List<MapObject>();
 
-        static PointLatLng startOfRoute;
-        static PointLatLng endOfRoute;
-
         static IEnumerable<MapObject> besidedObjects;
+
+        Human human = null;
+        Car car = null;
+        GMapMarker dest;
+        public GMapMarker carMarker;
+        public GMapMarker humanMarker;
 
         private void AddMarker(MapObject marker)
         {
@@ -77,6 +74,7 @@ namespace OOP_3
             markerBox.Items.Add("Автомобиль");
             markerBox.Items.Add("Маршрут");
             markerBox.Items.Add("Область");
+            markerBox.Items.Add("Путь");
         }
 
         private void Ok_Click(object sender, RoutedEventArgs e)
@@ -85,14 +83,26 @@ namespace OOP_3
             {
                 if ((string)markerBox.SelectedItem == "Человек")
                 {
-                    Human human = new Human(markerTitle.Text, Map.Position);
+                    human = new Human(markerTitle.Text, Map.Position);
+                    humanMarker = human.getMarker();
                     AddMarker(human);
+                    if (car != null)
+                    {
+                        car.Arrived += human.CarArrived;
+                        human.passSeated += car.passSeated;
+                    }
                 }
 
                 if ((string)markerBox.SelectedItem == "Автомобиль")
                 {
-                    Car car = new Car(markerTitle.Text, Map.Position);
+                    car = new Car(markerTitle.Text, Map.Position);
+                    carMarker = car.getMarker();
                     AddMarker(car);
+                    if (human != null)
+                    {
+                        car.Arrived += human.CarArrived;
+                        human.passSeated += car.passSeated;
+                    }
                 }
 
                 if ((string)markerBox.SelectedItem == "Местоположение")
@@ -112,9 +122,35 @@ namespace OOP_3
                     Area area = new Area(markerTitle.Text, points);
                     AddMarker(area);
                 }
+
+                if ((string)markerBox.SelectedItem == "Путь")
+                {
+                    if( human != null)
+                    {
+                        human.moveTo(Map.Position);
+
+                        dest = new GMapMarker(Map.Position)
+                        {
+                            Shape = new Image
+                            {
+                                Width = 32,
+                                Height = 32,
+                                ToolTip = "dest",
+                                Source = new BitmapImage(new Uri("C:\\Users\\malka\\source\\repos\\OOP_3\\OOP_3\\icons\\Location.png"))
+                            }
+                        };
+                    }
+                }
             }
 
             ClearPoints();
+
+            foreach (MapObject mo in objects)
+            {
+                Map.Markers.Add(mo.getMarker());
+            }
+
+            Map.Markers.Add(dest);
         }
 
         private void Ok1_Click(object sender, RoutedEventArgs e)
@@ -166,6 +202,11 @@ namespace OOP_3
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
             ClearPoints();
+        }
+
+        private void Go_Click(object sender, RoutedEventArgs e)
+        {
+            Map.Markers.Add(car.moveTo(human.getPosition()));
         }
     }
 }

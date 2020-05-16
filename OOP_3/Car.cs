@@ -20,7 +20,6 @@ namespace OOP_3
         private PointLatLng point;
         private Route route;
         public Human pass;
-        Thread newThread;
 
         GMapMarker carMarker;
 
@@ -78,7 +77,7 @@ namespace OOP_3
 
             this.route = new Route("", routePoints);
 
-            newThread = new Thread(new ThreadStart(MoveByRoute));
+            Thread newThread = new Thread(new ThreadStart(MoveByRoute));
             newThread.Start();
 
             return this.route.getMarker();
@@ -107,13 +106,11 @@ namespace OOP_3
             }
             if (pass == null)
             {
-                newThread.Abort();
                 Arrived?.Invoke(this, null);
             }
             else
             {
                 pass = null;
-                newThread.Abort();
             }
         }
 
